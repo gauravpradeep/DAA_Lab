@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
+int opcount=0;
 int* primfacts(int n){
 
 	int* factors=(int*)malloc(100*sizeof(int));
@@ -13,6 +13,7 @@ int* primfacts(int n){
 		count++;
 		factors[0]=count;
 		factors[count]=2;
+		opcount++;
 	}
 	for(int i=3;i*i<=n;i=i+2)
 	{
@@ -21,9 +22,11 @@ int* primfacts(int n){
 			count++;
 			factors[count]=i;
 			n=n/i;
+			opcount++;
 		}
 	}
 	if(n>2){
+		opcount++;
 		count++;
 		factors[count]=n;
 	}
