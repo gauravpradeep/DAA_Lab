@@ -14,7 +14,7 @@ int* primfacts(int n){
 		factors[0]=count;
 		factors[count]=2;
 	}
-	for(int i=3;i<n;i=i+2)
+	for(int i=3;i*i<=n;i=i+2)
 	{
 		while(n%i==0)
 		{
@@ -25,16 +25,16 @@ int* primfacts(int n){
 	}
 	if(n>2){
 		count++;
-		factors[0]=count;
 		factors[count]=n;
 	}
+	factors[0]=count;
 	return factors;
 }
 void gcd(int* a, int* b){
 	int gcd=1;
-	for(int i=1;i<=a[a[0]];i++){
-		for(int j=1;j<=b[b[0]];j++){
-			if(a[i]==b[j] && b[j]!=-1){
+	for(int i=1;i<=a[0];i++){
+		for(int j=1;j<=b[0];j++){
+			if(a[i]==b[j] && b[j]!=-1 && a[i]!=-1){
 				gcd*=a[i];
 				a[i]=-1;
 				b[j]=-1;
@@ -46,11 +46,18 @@ void gcd(int* a, int* b){
 }
 
 int main(){
-	int* a=primfacts(39);
-	int* b=primfacts(26);
+	int m,n;
+	printf("Enter 2 nos \n");
+	scanf("%d%d",&m,&n);
+	int* a=primfacts(m);
+	int* b=primfacts(n);
+	for(int i=0;i<=a[0];i++){
+		printf("%d ",a[i]);
+	}
+	printf("\n");
+	for(int i=0;i<=b[0];i++){
+		printf("%d ",b[i]);
+	}
+	printf("\n");
 	gcd(a,b);
-	// for(int i=1;i<=a[a[0]];i++){
-	// 	printf("%d ",a[i]);
-	// }
-	// printf("\n");
 }
