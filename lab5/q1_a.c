@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int vis[100];
-int push=0;
-int pop=0;
+int vis[10];
+
 struct Graph{
 	int V;
 	int Adj[10][10];
 };
+int top[10];
+int cnt=0;
 
 void add_edge(struct Graph* g, int v, int c){
 	g->Adj[v][c]=1;
@@ -15,8 +16,6 @@ void add_edge(struct Graph* g, int v, int c){
 
 void DFS(struct Graph* G, int u)
 {
-	push++;
-	printf("Pushed %d \n",u);
     vis[u] = 1;
     // printf("%d ", u);
     for (int v = 0; v < G->V; v++) {
@@ -24,8 +23,7 @@ void DFS(struct Graph* G, int u)
             DFS(G, v);
         }
     }
-    printf("popped %d \n",u);
-
+    top[cnt++]=u;
 }
 
 void DFStraversal(struct Graph* G)
@@ -58,6 +56,10 @@ int main(){
 	add_edge(g,4,3);
 	add_edge(g,4,1);
     DFStraversal(g);
+    for(int i=g->V - 1;i>=0;i--)
+    {
+    	printf("%d ",top[i]);
+    }
 }
 
 
