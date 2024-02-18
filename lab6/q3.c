@@ -85,7 +85,6 @@ int main()
 
 	printf("\nSorted array is \n"); 
 	printArray(arr, n);
-	printf("Size of array : %d \n",n);
 	printf("Opcount : %d \n",opcount);
 	return 0; 
 }
